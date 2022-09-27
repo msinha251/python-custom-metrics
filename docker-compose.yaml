@@ -1,0 +1,40 @@
+version: "3"
+services:
+  python-app:
+    build:
+      context: ./python-app
+    container_name: python-metrics-monitoring
+    image: python-metrics-monitoring
+    ports:
+      - "5001:5000"
+  prometheus:
+    container_name: prometheus-svc
+    image: prom/prometheus
+    ports: 
+      - "9091:9090"
+    command: --config.file=/etc/prometheus/prometheus.yaml
+    volumes:
+      - ./prometheus/prometheus.yaml:/etc/prometheus/prometheus.yaml
+  grafana:
+    image: grafana/grafana-enterprise:8.2.0
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_AUTH_BASIC_ENABLED=false
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+  grafana-dashboards:
+    image: ubuntu:latest
+    volumes:
+      - ./grafana/:/grafana/
+    command: >
+      /bin/sh -c "
+        set -e;
+        apt-get update && apt-get install -y curl
+        echo 'waiting for grafana'
+        sleep 5s
+        cd /grafana/
+        curl --request POST http://grafana:3000/api/datasources --header 'Content-Type: application/json' -d @datasource.json
+        curl --request POST http://grafana:3000/api/dashboards/db --header 'Content-Type: application/json' -d @dashboard.json"
+    depends_on:
+      - grafana
