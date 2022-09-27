@@ -8,14 +8,14 @@ Docker-compose contains:
 * grafana-dashboard
 
 Commands:<br>
-###build python app<br>
+### build python app<br>
 `docker-compose build python-app`<br>
 
-###runn all containers<br>
+### run all containers<br>
 `docker-compose up`<br>
 
-###stop containers
+### stop containers
 `docker-compose down`<br>
 
-###running containers<br>
+### running containers<br>
 `docker-compose ps` 
