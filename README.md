@@ -7,15 +7,15 @@ Docker-compose contains:
 * python-app
 * grafana-dashboard
 
-Commands:<br>
-### build python app<br>
+## Commands:
+#### build python app<br>
 `docker-compose build python-app`<br>
 
-### run all containers<br>
+#### run all containers<br>
 `docker-compose up`<br>
 
-### stop containers
+#### stop containers
 `docker-compose down`<br>
 
-### running containers<br>
+#### running containers<br>
 `docker-compose ps` 
