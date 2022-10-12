@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "ml-platform-app"
+spec:
+  selector:
+    matchLabels:
+      run: "ml-platform-app"
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: "ml-platform-app"
+    spec:
+      containers:
+      - name: "ml-platform-app"
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        ports:
+        - containerPort: 5000
+        env:
+        - name: "WORKSPACE_NAME"
+          value: <WORKSPACW-NAME>
+        - name: GHE_URL
+          value: <GITHUB-URL>
+      imagePullSecrets:
+      - name: {{ .Values.imagePullSecrets }}
