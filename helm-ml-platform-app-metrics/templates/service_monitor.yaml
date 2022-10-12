@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    release: kube-prometheus-stack
+  name: ml-platform-app
+  namespace: <PROMETHEUS-STACK-NAMESPACE>
+spec:
+  endpoints:
+  - path: /metrics
+    port: metrics
+    interval: 60s
+  namespaceSelector:
+    matchNames:
+    - <CUSTOM-METRICS-APP-NAMESPACE>
+  selector:
+    matchLabels:
+      run: ml-platform-app
