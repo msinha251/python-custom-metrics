@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "python-custom-metrics"
+spec:
+  selector:
+    matchLabels:
+      run: "python-custom-metrics"
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: "python-custom-metrics"
+    spec:
+      containers:
+      - name: "python-custom-metrics"
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        ports:
+        - containerPort: 5000
+        env:
+        - name: "WORKSPACE_NAME"
+          value: <WORKSPACW-NAME>
+        - name: GHE_URL
+          value: <GITHUB-URL>
+      imagePullSecrets:
+      - name: {{ .Values.imagePullSecrets }}
