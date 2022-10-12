@@ -9,4 +9,4 @@ image:
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: <DOCKER-IMAGE-TAG>
-imagePullSecrets: regcred
+imagePullSecrets: <SECRET-NAME>
