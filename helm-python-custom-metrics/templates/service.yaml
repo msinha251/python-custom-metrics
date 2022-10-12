@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: "ml-platform-app-service"
+  name: "python-custom-metrics-svc"
   labels:
-    run: "ml-platform-app"
+    run: "python-custom-metrics"
 spec:
   ports:
   - name: metrics
     port: 5000
     protocol: TCP
   selector:
-    run: "ml-platform-app"
+    run: "python-custom-metrics"

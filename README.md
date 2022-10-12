@@ -1,5 +1,5 @@
-# ml-platform-app-metrics
-This repo build docker image for `platform-app-metrics` which contains code sample for tracing custom metrics for prometheus using prometheus-client and python flask app that exposed custom defined metrics on metrics endpoint. For quick local setup docker-compose is available and for K8S, helm template is available.
+# python-custom-metrics
+This repo build docker image for `python-custom-metrics` which contains code sample for tracing custom metrics for prometheus using prometheus-client and python flask app that exposed custom defined metrics on metrics endpoint. For quick local setup docker-compose is available and for K8S, helm template is available.
 
 
 <details>
@@ -57,7 +57,7 @@ kind: ServiceMonitor
 metadata:
   labels:
     release: kube-prometheus-stack
-  name: ml-platform-app
+  name: python-custom-metrics-sm
   namespace: monitoring
 spec:
   endpoints:
@@ -69,7 +69,7 @@ spec:
     - databricks-cd
   selector:
     matchLabels:
-      run: ml-platform-app
+      run: python-custom-metrics
  ```
 
 </hr>

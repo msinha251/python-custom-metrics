@@ -3,7 +3,7 @@ kind: ServiceMonitor
 metadata:
   labels:
     release: kube-prometheus-stack
-  name: ml-platform-app
+  name: python-custom-metrics-sm
   namespace: <PROMETHEUS-STACK-NAMESPACE>
 spec:
   endpoints:
@@ -15,4 +15,4 @@ spec:
     - <CUSTOM-METRICS-APP-NAMESPACE>
   selector:
     matchLabels:
-      run: ml-platform-app
+      run: python-custom-metrics
